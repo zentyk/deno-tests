@@ -1,0 +1,2 @@
+### GET request with a header
+GET http://localhost:8080/api/post-its
