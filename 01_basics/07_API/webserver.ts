@@ -7,6 +7,11 @@ interface PostIt {
     createdAt: Date
 }
 
+interface ResponseTemplate {
+    body : any;
+    status : number;
+}
+
 class PostItManager {
     constructor() {
         let postIts : Record<PostIt["id"], PostIt> = {
@@ -54,6 +59,13 @@ class Server {
         this.serve = serve({port: this.port});
     }
 
+    CreateResponse(status,body) : ResponseTemplate {
+        return {
+            body: body,
+            status: status
+        }
+    }
+
     Respond(request : Request) : Response {
         const url = new URL(`${this.protocol}://${this.host}${request.url}`);
         const pathWithMethod = `${request.method} ${url.pathname}`;
@@ -62,18 +74,17 @@ class Server {
             case "GET /api/post-its":
                 let values = this.postItManager.FindAll();
                 if(values) {
-                    request.respond({body: JSON.stringify({postIts : values}), status: 200});
+                    request.respond(this.CreateResponse(200,JSON.stringify(values)));
                 } else {
-                    request.respond({body: 'not-found', status: 400});
+                    request.respond(this.CreateResponse(404,'not-found'));
                 }
             break;
             default:
-                request.respond({body:'not-found', status: 400});
+                request.respond(this.CreateResponse(404,'not-found'));
             break;
         }
     }
 }
-
 
 let server = new Server(8080);
 
