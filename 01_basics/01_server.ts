@@ -1,3 +1,6 @@
+/* Generates a basic HTTP Server using a given port number
+* @param {number} port number
+*/
 class Server {
     server : any = undefined;
 
@@ -27,6 +30,7 @@ class Server {
 
 let server = new Server(8080);
 
+/* Starts the server */
 (async ()=>{
     for await (const conn of server.server) {
         server.ServeHTTP(conn);
