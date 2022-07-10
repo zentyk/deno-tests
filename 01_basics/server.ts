@@ -1,4 +1,6 @@
 class Server {
+    server : any = undefined;
+
     constructor(public port: number) {
       this.port = port;
       this.server = Deno.listen({ port: this.port });
@@ -25,6 +27,8 @@ class Server {
 
 let server = new Server(8080);
 
-for await (const conn of server.server) {
-  server.ServeHTTP(conn);
-}
+(async ()=>{
+    for await (const conn of server.server) {
+        server.ServeHTTP(conn);
+    }
+})()

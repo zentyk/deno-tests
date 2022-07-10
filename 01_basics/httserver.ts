@@ -1,4 +1,5 @@
-import { serve } from "https://deno.land/std@0.147.0/http/server.ts";
+//--import-map=import-maps.json --unstable httserver.ts
+import { serve } from "http/server.ts";
 
 class WebServer {
     constructor(public port: number) {
