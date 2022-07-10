@@ -1,4 +1,4 @@
-//generated blob output to html using `deno run --allow-net 01_basics/htmlFile.ts > 01_basics/index.html`
+//`deno run --allow-net 01_basics/htmlFile.ts > 01_basics/index.html`
 fetch("https://deno.land/logo.svg ")
     .then(r =>r.blob())
     .then(async (img) => {

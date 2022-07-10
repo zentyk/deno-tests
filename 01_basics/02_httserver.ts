@@ -1,4 +1,4 @@
-//--import-map=import-maps.json --unstable httserver.ts
+//`deno run --import-map=import-maps.json --unstable httserver.ts`
 import { serve } from "http/server.ts";
 
 class WebServer {

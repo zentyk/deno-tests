@@ -1,3 +1,4 @@
+//`demno run --allow-read cli_command.ts`
 import { join } from 'https://deno.land/std@0.83.0/path/mod.ts';
 
 const [path = "."] = Deno.args;
